@@ -68,7 +68,11 @@ const Card = () => {
               </p>
             </div>
             <div className="card-actions justify-center mt-6">
-              <button className="btn btn-outline btn-warning">View More</button>
+              <Link to="/details">
+                <button className="btn btn-outline btn-warning">
+                  View More
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -102,7 +106,11 @@ const Card = () => {
               </p>
             </div>
             <div className="card-actions justify-center mt-4">
-              <button className="btn btn-outline btn-warning">View More</button>
+              <Link to="/details">
+                <button className="btn btn-outline btn-warning">
+                  View More
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -136,7 +144,7 @@ const Card = () => {
               </p>
             </div>
             <div className="card-actions justify-center mt-3">
-              <Link to='/details'>
+              <Link to="/details">
                 <button className="btn btn-outline btn-warning">
                   View More
                 </button>
