@@ -36,13 +36,17 @@ const NavBar = () => {
                   </div>
                 </div>
                 <div className="flex-shrink-0">
-                  <h1 className="text-[#1A1919] font-bold text-2xl">
-                    OR
-                    <span className="bg-gradient-to-r text-transparent bg-clip-text from-indigo-500 to-purple-600">
-                      EO
-                    </span>
-                  </h1>
-                  <p className="text-xs text-indigo-400 font-semibold">for health</p>
+                  <Link to="/">
+                    <h1 className="text-[#1A1919] font-bold text-2xl">
+                      Or
+                      <span className="bg-gradient-to-r text-transparent bg-clip-text from-indigo-500 to-purple-600">
+                        eo
+                      </span>
+                    </h1>
+                  </Link>
+                  <p className="text-xs text-indigo-400 font-semibold">
+                    for health
+                  </p>
                 </div>
               </div>
             </div>
@@ -56,13 +60,13 @@ const NavBar = () => {
                 </Link>
 
                 <Link
-                  to="/statistics"
+                  to="/about"
                   className="text-[#1A1919] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
                 >
-                  Contact Us
+                  About Us
                 </Link>
                 <Link
-                  to="/blog"
+                  to="/signin"
                   className="text-[#1A1919] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
                 >
                   Sign in
@@ -71,7 +75,7 @@ const NavBar = () => {
                   <p>|</p>
                 </div>
                 <Link
-                  to="/blog"
+                  to="/signup"
                   className="text-[#1A1919] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
                 >
                   Sign up

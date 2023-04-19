@@ -1,6 +1,7 @@
 import React from "react";
 import bannerImage from "/public/images/doctor-banner.jpg";
 import { Link } from "react-router-dom";
+import Card from "../Card/Card";
 
 const MainContent = () => {
   return (
@@ -25,11 +26,12 @@ const MainContent = () => {
           text.
         </p>
         <Link>
-          <button className="btn-error font-semibold w-28 p-2 rounded-md mt-4">
+          <button className="btn-error font-semibold w-28 p-2 rounded-md mt-4 hover:bg-red-500">
             View More
           </button>
         </Link>
       </div>
+      <Card />
     </div>
   );
 };

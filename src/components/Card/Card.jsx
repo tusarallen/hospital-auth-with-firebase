@@ -9,6 +9,7 @@ import {
   FaGoogle,
   FaSkype,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Card = () => {
   return (
@@ -27,9 +28,7 @@ const Card = () => {
         </div>
         <div>
           <p>
-            <span className="text-xl font-bold text-black">
-              Oreo Hospital
-            </span>
+            <span className="text-xl font-bold text-black">Oreo Hospital</span>
             <span className="ml-3 text-thin font-normal text-gray-700">
               The wise man therefore always holds in these matters to this
               principle of selection: he <br /> rejects pleasures to secure.
@@ -137,7 +136,11 @@ const Card = () => {
               </p>
             </div>
             <div className="card-actions justify-center mt-3">
-            <button className="btn btn-outline btn-warning">View More</button>
+              <Link to='/details'>
+                <button className="btn btn-outline btn-warning">
+                  View More
+                </button>
+              </Link>
             </div>
           </div>
         </div>
