@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import imageLogo from "../../../public/images/doctors.png";
+import { AuthContext } from "../Providers/AuthProviders";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogin = () => {
+    logOut()
+      .then((result) => {})
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
@@ -80,6 +90,11 @@ const NavBar = () => {
                 >
                   Sign up
                 </Link>
+                {user && (
+                  <div className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">
+                    <button onClick={handleLogin}>Log out</button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

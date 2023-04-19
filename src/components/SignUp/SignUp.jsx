@@ -5,16 +5,27 @@ import { AuthContext } from "../Providers/AuthProviders";
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleRegister = (event) => {
     event.preventDefault();
 
+    setSuccess("");
     setError("");
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
+    const confirm = form.confirm.value;
+    console.log(name, email, password, confirm);
+
+    if (password !== confirm) {
+      setError("password did not match");
+      return;
+    } else if (password.length < 6) {
+      setError("password must be 6 characters or longer");
+      return;
+    }
 
     if (!/(?=.*[A-Z])/.test(password)) {
       setError("please add at least one uppercase");
@@ -31,6 +42,9 @@ const SignUp = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        setError("");
+        form.reset();
+        setSuccess("user has been created successfully");
       })
       .catch((error) => {
         console.log(error.message);
@@ -55,6 +69,7 @@ const SignUp = () => {
                   name="name"
                   placeholder="name"
                   className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -66,6 +81,7 @@ const SignUp = () => {
                   name="email"
                   placeholder="email"
                   className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -77,7 +93,21 @@ const SignUp = () => {
                   name="password"
                   placeholder="password"
                   className="input input-bordered"
+                  required
                 />
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Confirm Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    name="confirm"
+                    placeholder="password"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <p className="text-warning pt-2">{success}</p>
                 <p className="text-error pt-2">{error}</p>
                 <label className="label">
                   <Link className="pt-2 shadow-gray-500" to="/signin">
