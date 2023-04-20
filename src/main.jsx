@@ -9,6 +9,7 @@ import SignUp from "./components/SignUp/SignUp";
 import About from "./components/About/About";
 import Details from "./components/Details/Details";
 import AuthProviders from "./components/Providers/AuthProviders";
+import PrivateRoutes from "./routes/PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <PrivateRoutes>
+            <About />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/signin",
@@ -33,7 +38,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/details",
-        element: <Details />,
+        element: (
+          <PrivateRoutes>
+            <Details />
+          </PrivateRoutes>
+        ),
       },
     ],
   },

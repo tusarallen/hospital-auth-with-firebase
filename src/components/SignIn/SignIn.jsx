@@ -1,11 +1,17 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProviders";
+import { FaGoogle } from "react-icons/fa";
 
 const SignIn = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signInWithGoogle, signIn } = useContext(AuthContext);
   const [success, setSuccess] = useState("");
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
+
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -22,6 +28,18 @@ const SignIn = () => {
         console.log(loggedUser);
         form.reset();
         setSuccess("user login successfully");
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
       })
       .catch((error) => {
         console.log(error.message);
@@ -84,6 +102,19 @@ const SignIn = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
+              </div>
+              <div className="form-control mt-4">
+                <button
+                  onClick={handleGoogleSignIn}
+                  className="btn btn-success"
+                >
+                  <div className="flex items-center">
+                    <p>Signin with</p>
+                    <p className="ml-2">
+                      <FaGoogle />
+                    </p>
+                  </div>
+                </button>
               </div>
               <Link to="/signup" className="pt-2 shadow-gray-500">
                 new to oreo ? please register
