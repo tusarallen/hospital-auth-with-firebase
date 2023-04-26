@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProviders";
-import { FaGoogle } from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const SignIn = () => {
-  const { signInWithGoogle, signIn } = useContext(AuthContext);
+  const { signInWithGoogle, signInWithGithub, signIn } =
+    useContext(AuthContext);
   const [success, setSuccess] = useState("");
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
@@ -37,6 +38,17 @@ const SignIn = () => {
 
   const handleGoogleSignIn = () => {
     signInWithGoogle()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    signInWithGithub()
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
@@ -100,7 +112,7 @@ const SignIn = () => {
                 </label>
                 <p className="text-warning pt-2">{success}</p>
               </div>
-              <div className="form-control mt-6">
+              <div className="form-control mt-3">
                 <button className="btn btn-primary">Login</button>
               </div>
               <div className="form-control mt-4">
@@ -112,6 +124,17 @@ const SignIn = () => {
                     <p>Signin with</p>
                     <p className="ml-2">
                       <FaGoogle />
+                    </p>
+                  </div>
+                </button>
+                <button
+                  onClick={handleGithubSignIn}
+                  className="btn btn-success mt-3"
+                >
+                  <div className="flex items-center">
+                    <p>Signin with</p>
+                    <p className="ml-2">
+                      <FaGithub />
                     </p>
                   </div>
                 </button>
