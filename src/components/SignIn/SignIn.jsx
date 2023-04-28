@@ -1,13 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProviders";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const SignIn = () => {
-  const { signInWithGoogle, signInWithGithub, signIn } =
+  const { signInWithGoogle, signInWithGithub, signIn, resetPassword } =
     useContext(AuthContext);
   const [success, setSuccess] = useState("");
   const [show, setShow] = useState(false);
+  const emailRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location);
@@ -58,6 +59,21 @@ const SignIn = () => {
       });
   };
 
+  const handleResetPassword = (event) => {
+    const email = emailRef.current.value;
+    if (!email) {
+      alert("please provide your email address to reset password");
+      return;
+    }
+    resetPassword(email)
+      .then(() => {
+        alert("please check your email");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <div>
       <div className="text-center mt-4">
@@ -76,6 +92,7 @@ const SignIn = () => {
                   name="email"
                   placeholder="email"
                   className="input input-bordered"
+                  ref={emailRef}
                   required
                 />
               </div>
@@ -115,7 +132,7 @@ const SignIn = () => {
               <div className="form-control mt-3">
                 <button className="btn btn-primary">Login</button>
               </div>
-              <div className="form-control mt-4">
+              <div className="form-control mt-1">
                 <button
                   onClick={handleGoogleSignIn}
                   className="btn btn-success"
@@ -139,7 +156,18 @@ const SignIn = () => {
                   </div>
                 </button>
               </div>
-              <Link to="/signup" className="pt-2 shadow-gray-500">
+              <p className="mt-2 text-lg">
+                <small>
+                  Forget password? Please
+                  <button
+                    onClick={handleResetPassword}
+                    className="btn-link lowercase"
+                  >
+                    <span className="uppercase ms-2">R</span>eset password
+                  </button>
+                </small>
+              </p>
+              <Link to="/signup" className="shadow-gray-500">
                 new to oreo ? please register
               </Link>
             </form>

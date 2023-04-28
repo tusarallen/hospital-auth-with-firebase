@@ -8,6 +8,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   GithubAuthProvider,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import app from "../../firebase/firebase.config";
 
@@ -43,6 +44,10 @@ const AuthProviders = ({ children }) => {
     return signOut(auth);
   };
 
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
+
   useEffect(() => {
     const unsubscibe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -62,6 +67,7 @@ const AuthProviders = ({ children }) => {
     signInWithGoogle,
     signInWithGithub,
     logOut,
+    resetPassword,
   };
 
   return (
