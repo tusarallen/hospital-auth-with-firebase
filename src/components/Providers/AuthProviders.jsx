@@ -12,14 +12,14 @@ import {
 } from "firebase/auth";
 import app from "../../firebase/firebase.config";
 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext();
 const auth = getAuth(app);
 const googleAuthProvider = new GoogleAuthProvider();
 const githubAuthProvider = new GithubAuthProvider();
 
 const AuthProviders = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   console.log(user);
 
   const createUser = (email, password) => {
@@ -33,10 +33,12 @@ const AuthProviders = ({ children }) => {
   };
 
   const signInWithGoogle = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleAuthProvider);
   };
 
   const signInWithGithub = () => {
+    setLoading(true);
     return signInWithPopup(auth, githubAuthProvider);
   };
 

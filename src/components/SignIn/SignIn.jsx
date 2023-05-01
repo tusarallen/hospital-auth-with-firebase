@@ -29,8 +29,8 @@ const SignIn = () => {
         const loggedUser = result.user;
         console.log(loggedUser);
         form.reset();
-        setSuccess("user login successfully");
         navigate(from, { replace: true });
+        setSuccess("user login successfully");
       })
       .catch((error) => {
         console.log(error.message);
@@ -42,6 +42,7 @@ const SignIn = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -53,6 +54,7 @@ const SignIn = () => {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
@@ -132,30 +134,7 @@ const SignIn = () => {
               <div className="form-control mt-3">
                 <button className="btn btn-primary">Login</button>
               </div>
-              <div className="form-control mt-1">
-                <button
-                  onClick={handleGoogleSignIn}
-                  className="btn btn-success"
-                >
-                  <div className="flex items-center">
-                    <p>Signin with</p>
-                    <p className="ml-2">
-                      <FaGoogle />
-                    </p>
-                  </div>
-                </button>
-                <button
-                  onClick={handleGithubSignIn}
-                  className="btn btn-success mt-3"
-                >
-                  <div className="flex items-center">
-                    <p>Signin with</p>
-                    <p className="ml-2">
-                      <FaGithub />
-                    </p>
-                  </div>
-                </button>
-              </div>
+
               <p className="mt-2 text-lg">
                 <small>
                   Forget password? Please
@@ -171,6 +150,27 @@ const SignIn = () => {
                 new to oreo ? please register
               </Link>
             </form>
+            <div className="form-control mt-1">
+              <button onClick={handleGoogleSignIn} className="btn btn-success">
+                <div className="flex items-center">
+                  <p>Signin with</p>
+                  <p className="ml-2">
+                    <FaGoogle />
+                  </p>
+                </div>
+              </button>
+              <button
+                onClick={handleGithubSignIn}
+                className="btn btn-success mt-3"
+              >
+                <div className="flex items-center">
+                  <p>Signin with</p>
+                  <p className="ml-2">
+                    <FaGithub />
+                  </p>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </div>
