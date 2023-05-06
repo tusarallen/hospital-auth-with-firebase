@@ -21,7 +21,7 @@ const Card = () => {
               Meet
             </span>{" "}
             <span className="bg-gradient-to-r text-transparent bg-clip-text text-3xl font-bold from-gray-500 to-gray-600 ml-4">
-              Our Team
+              Our Teams
             </span>
           </h3>
           <p className="font-medium text-xl pt-1">Description text here...</p>
