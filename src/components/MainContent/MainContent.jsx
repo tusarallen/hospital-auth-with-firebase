@@ -6,7 +6,7 @@ import Card from "../Card/Card";
 const MainContent = () => {
   return (
     <div className="mt-5">
-      <div className="flex mx-auto w-11/12">
+      <div className="flex mx-auto">
         <div className="">
           <img
             className="rounded mx-auto w-[1200px]"
