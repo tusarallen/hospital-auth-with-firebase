@@ -2,6 +2,8 @@ import React, { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProviders";
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import Lottie from "lottie-react";
+import lottieVhai from "../../assets/16766-forget-password-animation.json";
 
 const SignIn = () => {
   const { signInWithGoogle, signInWithGithub, signIn, resetPassword } =
@@ -77,104 +79,112 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <div className="text-center mt-4">
-        <h1 className="text-5xl font-bold">Sign In </h1>
-      </div>
-      <div className="hero mt-8">
-        <div className="hero flex-col">
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
-            <form onSubmit={handleLogin} className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  ref={emailRef}
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type={show ? "text" : "password"}
-                  name="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  required
-                />
-                <p
-                  className="cursor-pointer font-semibold text-lg ml-2 my-1"
-                  onClick={() => setShow(!show)}
-                >
-                  <small>
-                    {show ? (
-                      <span>Hide Password</span>
-                    ) : (
-                      <span>Show Password</span>
-                    )}
-                  </small>
-                </p>
-                <label className="label">
-                  <a
-                    href="#"
-                    className="label-text-alt link link-hover font-semibold text-sm"
-                  >
-                    Forgot password?
-                  </a>
-                </label>
-                <p className="text-warning pt-2">{success}</p>
-              </div>
-              <div className="form-control mt-3">
-                <button className="btn btn-primary">Login</button>
-              </div>
+    <>
+      <h1 className="text-5xl font-bold text-center">Sign In </h1>
+      <div className="flex mx-auto justify-center gap-44 items-center mb-16">
+        <div>
+          <Lottie animationData={lottieVhai} loop={true} />
+        </div>
+        <div>
+          <div className="hero mt-8">
+            <div className="hero flex-col">
+              <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
+                <form onSubmit={handleLogin} className="card-body">
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Email</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="email"
+                      className="input input-bordered"
+                      ref={emailRef}
+                      required
+                    />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text">Password</span>
+                    </label>
+                    <input
+                      type={show ? "text" : "password"}
+                      name="password"
+                      placeholder="password"
+                      className="input input-bordered"
+                      required
+                    />
+                    <p
+                      className="cursor-pointer font-semibold text-lg ml-2 my-1"
+                      onClick={() => setShow(!show)}
+                    >
+                      <small>
+                        {show ? (
+                          <span>Hide Password</span>
+                        ) : (
+                          <span>Show Password</span>
+                        )}
+                      </small>
+                    </p>
+                    <label className="label">
+                      <a
+                        href="#"
+                        className="label-text-alt link link-hover font-semibold text-sm"
+                      >
+                        Forgot password?
+                      </a>
+                    </label>
+                    <p className="text-warning pt-2">{success}</p>
+                  </div>
+                  <div className="form-control mt-3">
+                    <button className="btn btn-primary">Login</button>
+                  </div>
 
-              <p className="mt-2 text-lg">
-                <small>
-                  Forget password? Please
+                  <p className="mt-2 text-lg">
+                    <small>
+                      Forget password? Please
+                      <button
+                        onClick={handleResetPassword}
+                        className="btn-link lowercase"
+                      >
+                        <span className="uppercase ms-2">R</span>eset password
+                      </button>
+                    </small>
+                  </p>
+                  <Link to="/signup" className="shadow-gray-500">
+                    new to oreo ? please register
+                  </Link>
+                </form>
+                <div className="form-control mt-1">
                   <button
-                    onClick={handleResetPassword}
-                    className="btn-link lowercase"
+                    onClick={handleGoogleSignIn}
+                    className="btn btn-success"
                   >
-                    <span className="uppercase ms-2">R</span>eset password
+                    <div className="flex items-center">
+                      <p>Signin with</p>
+                      <p className="ml-2">
+                        <FaGoogle style={{fontSize:'25px', color:"red"}}/>
+                      </p>
+                    </div>
                   </button>
-                </small>
-              </p>
-              <Link to="/signup" className="shadow-gray-500">
-                new to oreo ? please register
-              </Link>
-            </form>
-            <div className="form-control mt-1">
-              <button onClick={handleGoogleSignIn} className="btn btn-success">
-                <div className="flex items-center">
-                  <p>Signin with</p>
-                  <p className="ml-2">
-                    <FaGoogle />
-                  </p>
+                  <button
+                    onClick={handleGithubSignIn}
+                    className="btn btn-success mt-3"
+                  >
+                    <div className="flex items-center">
+                      <p>Signin with</p>
+                      <p className="ml-2">
+                        <FaGithub style={{fontSize:'25px',color:"red"}}/>
+                      </p>
+                    </div>
+                  </button>
                 </div>
-              </button>
-              <button
-                onClick={handleGithubSignIn}
-                className="btn btn-success mt-3"
-              >
-                <div className="flex items-center">
-                  <p>Signin with</p>
-                  <p className="ml-2">
-                    <FaGithub />
-                  </p>
-                </div>
-              </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
