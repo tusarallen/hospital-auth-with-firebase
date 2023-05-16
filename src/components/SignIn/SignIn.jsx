@@ -151,30 +151,44 @@ const SignIn = () => {
                       </button>
                     </small>
                   </p>
-                  <Link to="/signup" className="shadow-gray-500">
-                    new to oreo ? please register
-                  </Link>
+                  <span>
+                    new to oreo ?
+                    <Link
+                      to="/signup"
+                      className="shadow-gray-500 underline ml-2 text-blue-600"
+                    >
+                      please register
+                    </Link>
+                  </span>
                 </form>
-                <div className="form-control mt-1">
+                <div className="form-control">
                   <button
                     onClick={handleGoogleSignIn}
-                    className="btn btn-success"
+                    className="btn ml-[30px] w-[80%]"
                   >
                     <div className="flex items-center">
                       <p>Signin with</p>
                       <p className="ml-2">
-                        <FaGoogle style={{fontSize:'25px', color:"red"}}/>
+                        <FaGoogle
+                          style={{
+                            fontSize: "25px",
+                            color: "red",
+                            color: "white",
+                          }}
+                        />
                       </p>
                     </div>
                   </button>
                   <button
                     onClick={handleGithubSignIn}
-                    className="btn btn-success mt-3"
+                    className="btn ml-[30px] mb-3 w-[80%] mt-3"
                   >
                     <div className="flex items-center">
                       <p>Signin with</p>
                       <p className="ml-2">
-                        <FaGithub style={{fontSize:'25px',color:"red"}}/>
+                        <FaGithub
+                          style={{ fontSize: "25px", color: "white" }}
+                        />
                       </p>
                     </div>
                   </button>

@@ -6,7 +6,7 @@ import imageLogo from "../../../public/images/doctors.png";
 import { AuthContext } from "../Providers/AuthProviders";
 
 const NavBar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, signInWithGoogle } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -22,7 +22,7 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="bg-gray-100 mx-auto rounded-md">
+    <nav className="bg-gray-100 mx-auto rounded-md font-bold">
       <div className="max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -64,36 +64,68 @@ const NavBar = () => {
               <div className="flex space-x-4">
                 <Link
                   to="/"
-                  className="text-[#1A1919] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                  className="text-[#1A1919] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md  font-extrabold text-lg"
                 >
                   Services
                 </Link>
 
                 <Link
                   to="/about"
-                  className="text-[#1A1919] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
+                  className="text-[#1A1919] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-extrabold text-lg"
                 >
                   About Us
-                </Link>
-                <Link
-                  to="/signin"
-                  className="text-[#1A1919] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Sign in
                 </Link>
                 <div className="flex justify-center items-center">
                   <p>|</p>
                 </div>
-                <Link
-                  to="/signup"
-                  className="text-[#1A1919] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Sign up
-                </Link>
-                {user && (
-                  <div className="hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">
-                    <button onClick={handleLogin}>Log out</button>
-                  </div>
+
+                {user?.email ? (
+                  <>
+                    <Link
+                      to="/submit"
+                      className="text-[#1A1919] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-extrabold text-lg"
+                    >
+                      Details
+                    </Link>
+                    <div className="dropdown dropdown-end">
+                      <label
+                        tabIndex={0}
+                        className="btn btn-ghost btn-circle avatar"
+                      >
+                        <div className="w-10 rounded-full">
+                          <img
+                            title={user?.email && user.displayName}
+                            src={user && user.photoURL}
+                            className="flex items-center"
+                          />
+                        </div>
+                      </label>
+                      <ul
+                        tabIndex={0}
+                        className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+                      >
+                        <li>
+                          <Link to="/profile" className="justify-between">
+                            Profile
+                            <span className="badge">New</span>
+                          </Link>
+                        </li>
+                        <li></li>
+                        <li>
+                          <Link onClick={handleLogin} to="/">
+                            Logout
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </>
+                ) : (
+                  <Link
+                    to="/signin"
+                    className="text-[#1A1919] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md font-extrabold text-lg"
+                  >
+                    Login
+                  </Link>
                 )}
               </div>
             </div>

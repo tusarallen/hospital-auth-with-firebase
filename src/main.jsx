@@ -6,9 +6,11 @@ import AuthProviders from "./components/Providers/AuthProviders";
 import { router } from "./routes/Routes";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
+    <div className="font-mono">
+      <React.StrictMode>
       <AuthProviders>
         <RouterProvider router={router} />
       </AuthProviders>
     </React.StrictMode>
+    </div>
 );

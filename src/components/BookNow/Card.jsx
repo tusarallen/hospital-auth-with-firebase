@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Card = ({ doctor }) => {
   console.log(doctor);
-  const { img, description, location, name, price, title } = doctor;
+  const { _id, img, description, location, name, price, title } = doctor;
 
   return (
     <div className="card w-96 bg-base-100 shadow-2xl text-start">
@@ -30,7 +30,7 @@ const Card = ({ doctor }) => {
       </div>
       <div className="card-actions mx-auto -mt-5 p-3">
         <button className="btn btn-warning">View Profile</button>
-        <Link>
+        <Link to={`appointment/${_id}`}>
           <button className="btn btn-primary">Book Now</button>
         </Link>
       </div>

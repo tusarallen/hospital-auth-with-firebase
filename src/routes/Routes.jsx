@@ -6,6 +6,8 @@ import About from "../components/About/About";
 import SignIn from "../components/SignIn/SignIn";
 import SignUp from "../components/SignUp/SignUp";
 import Details from "../components/Details/Details";
+import AppointmentForm from "../components/AppointmentForm/AppointmentForm";
+import SubmitDetails from "../components/SubmitDetails/SubmitDetails";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +41,20 @@ export const router = createBrowserRouter([
             <Details />
           </PrivateRoutes>
         ),
+      },
+      {
+        path: "/appointment/:id",
+        element: (
+          <PrivateRoutes>
+            <AppointmentForm />
+          </PrivateRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/doctors/${params.id}`),
+      },
+      {
+        path: "/submit",
+        element: <SubmitDetails />,
       },
     ],
   },
