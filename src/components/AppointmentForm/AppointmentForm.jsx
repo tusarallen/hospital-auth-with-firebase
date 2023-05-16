@@ -1,13 +1,53 @@
 import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const AppointmentForm = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
   console.log(data);
+  const { _id, img, name, title, price } = data;
 
-  const { img, name, title } = data;
+  const handleForm = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const name = form.name.value;
+    const date = form.date.value;
+    const email = user?.email;
+    const order = {
+      patientName: name,
+      email,
+      img,
+      date,
+      service: _id,
+      price,
+    };
+
+    console.log(order);
+
+    fetch("http://localhost:3000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your booking has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
 
   return (
     <div className="text-[#1E90FF]">
@@ -25,7 +65,7 @@ const AppointmentForm = () => {
           </div>
         </div>
         <div className="w-1/2 font-bold text-lg bg-gray-100 rounded-md">
-          <form>
+          <form onSubmit={handleForm}>
             <div className="grid grid-cols-1 gap-6 p-2">
               <div className="form-control">
                 <label className="label">
