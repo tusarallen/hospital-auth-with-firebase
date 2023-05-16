@@ -41,7 +41,7 @@ const Card = () => {
           </div>
         </div>
         {/* card area */}
-        <div className="flex justify-center items-center mt-8 mb-8 gap-8 mx-auto">
+        <div className="flex justify-center mt-8 mb-8 gap-8 mx-auto">
           {/* first card */}
           <div className="card card-compact w-96 bg-base-100 shadow-xl">
             <figure>

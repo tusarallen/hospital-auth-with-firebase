@@ -30,7 +30,7 @@ const Card = ({ doctor }) => {
       </div>
       <div className="card-actions mx-auto -mt-5 p-3">
         <button className="btn btn-warning">View Profile</button>
-        <Link to={`appointment/${_id}`}>
+        <Link to={`/appointment/${_id}`}>
           <button className="btn btn-primary">Book Now</button>
         </Link>
       </div>
