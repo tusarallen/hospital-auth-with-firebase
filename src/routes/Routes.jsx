@@ -50,11 +50,15 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/doctors/${params.id}`),
+          fetch(`https://hospital-server-ten.vercel.app/doctors/${params.id}`),
       },
       {
         path: "/submit",
-        element: <SubmitDetails />,
+        element: (
+          <PrivateRoutes>
+            <SubmitDetails />
+          </PrivateRoutes>
+        ),
       },
     ],
   },

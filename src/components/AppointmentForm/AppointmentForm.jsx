@@ -7,7 +7,7 @@ const AppointmentForm = () => {
   const { user } = useContext(AuthContext);
   const data = useLoaderData();
   console.log(data);
-  const { _id, img, name, title, price } = data;
+  const { img, name, title, price } = data;
 
   const handleForm = (event) => {
     event.preventDefault();
@@ -21,13 +21,13 @@ const AppointmentForm = () => {
       email,
       img,
       date,
-      service: _id,
+      title,
       price,
     };
 
     console.log(order);
 
-    fetch("http://localhost:3000/bookings", {
+    fetch("https://hospital-server-ten.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

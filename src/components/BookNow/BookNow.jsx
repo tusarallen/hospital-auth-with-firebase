@@ -6,7 +6,7 @@ const BookNow = () => {
   const [doctors, setDoctors] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/doctors")
+    fetch("https://hospital-server-ten.vercel.app/doctors")
       .then((res) => res.json())
       .then((data) => setDoctors(data));
   }, []);
